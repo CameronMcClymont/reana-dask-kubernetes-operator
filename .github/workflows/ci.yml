@@ -88,7 +88,7 @@ jobs:
       - name: Check commit message compliance of the pull request
         if: github.event_name == 'pull_request'
         run: |
-          ./run-tests.sh --lint-commitlint ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.number }}
+          ./run-tests.sh --lint-commitlint ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.number }}
 
   lint-flake8:
     runs-on: ubuntu-24.04
