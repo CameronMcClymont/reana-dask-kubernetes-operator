@@ -17,6 +17,14 @@ format_black() {
     black --check .
 }
 
+format_prettier() {
+    prettier -c .
+}
+
+format_shfmt() {
+    shfmt -d .
+}
+
 lint_commitlint() {
     from=${2:-master}
     to=${3:-HEAD}
@@ -64,7 +72,7 @@ lint_jsonlint() {
 }
 
 lint_hadolint() {
-    docker run -i --rm docker.io/hadolint/hadolint:v2.12.0 < Dockerfile
+    docker run -i --rm docker.io/hadolint/hadolint:v2.12.0 <Dockerfile
 }
 
 lint_manifest() {
@@ -90,6 +98,7 @@ python_tests() {
 all() {
     docker_build
     format_black
+    format_shfmt
     lint_commitlint
     lint_flake8
     lint_hadolint
@@ -107,6 +116,7 @@ help() {
     echo "  --all                Perform all checks [default]"
     echo "  --docker-build       Check Docker build"
     echo "  --format-black       Check formatting of Python code"
+    echo "  --format-shfmt       Check formatting of shell scripts"
     echo "  --help               Display this help message"
     echo "  --lint-commitlint    Check linting of commit messages"
     echo "  --lint-flake8        Check linting of Python code"
@@ -130,6 +140,7 @@ case $arg in
 --help) help ;;
 --docker-build) docker_build ;;
 --format-black) format_black ;;
+--format-shfmt) format_shfmt ;;
 --lint-commitlint) lint_commitlint "$@" ;;
 --lint-flake8) lint_flake8 ;;
 --lint-hadolint) lint_hadolint ;;
