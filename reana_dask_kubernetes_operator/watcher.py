@@ -8,7 +8,6 @@
 
 """REANA Workflow Controller Instance."""
 
-
 import logging
 import kopf
 
