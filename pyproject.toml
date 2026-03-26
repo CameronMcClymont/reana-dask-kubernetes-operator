@@ -32,7 +32,7 @@ classifiers = [
 ]
 requires-python = ">=3.8"
 dependencies = [
-    "reana-commons>=0.95.0a12,<0.96.0",
+    "reana-commons>=0.95.0a14,<0.96.0",
     "reana-db>=0.95.0a6,<0.96.0"
 ]
 
